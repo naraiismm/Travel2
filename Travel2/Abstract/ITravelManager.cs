@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using EntityLayer.Concrete;
 using System.Threading.Tasks;
-using Core.Helpers.Abstract;
+using Core.Helpers.Results.Abstract;
 
 namespace BusinessLayer.Abstract
 {

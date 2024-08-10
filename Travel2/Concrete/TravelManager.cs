@@ -5,16 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EntityLayer.Concrete;
-using Core.Helpers.Abstract;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
-using Core.Helpers.Concrete;
 using System.Diagnostics;
 using System.ComponentModel.DataAnnotations;
 using FluentValidation;
 using ValidationException = System.ComponentModel.DataAnnotations.ValidationException;
 using BusinessLayer.Validation.FluentValidation;
-using Core.Entities;
+using Core.CrossCuttingConcern.Validation;
+using Core.Helpers.Results.Abstract;
+using Core.Helpers.Results.Concrete;
+using Core.Aspects.Autofac.Validation.FluentValidation;
 
 namespace BusinessLayer.Concrete
 {
@@ -22,14 +23,12 @@ namespace BusinessLayer.Concrete
     {
         private readonly ITravelDal _travelDal=travelDal;
 
-       
-
+        
+        [ValidationAspect<Travel>(typeof(TravelValidator))]
         public IResult Add(Travel travel)
         {
             
             
-            var validator = new TravelValidator();
-            ValidationTool<Travel>.Validation(validator, travel);
             
             
                 _travelDal.Add(travel);

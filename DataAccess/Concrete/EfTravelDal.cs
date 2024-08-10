@@ -11,6 +11,8 @@ namespace DataAccess.Concrete
 {
     public class EfTravelDal :BaseRepository<Travel,BaseProjectContext>,ITravelDal
     {
+        
+
         public EfTravelDal(BaseProjectContext context):base( context)
         {
             
